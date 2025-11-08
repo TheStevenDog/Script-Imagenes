@@ -2,12 +2,9 @@ import os
 import numpy as np
 from PIL import Image
 from flask import Flask, request, jsonify, send_from_directory
-from flask_cors import CORS
 from scipy.linalg import svd
 
 app = Flask(__name__)
-# Permitir CORS por defecto (útil si frontend está en GitHub Pages y el backend en otro dominio)
-CORS(app)
 # Rutas de almacenamiento
 UPLOAD_FOLDER = 'uploads'
 COMPRESSED_FOLDER = 'compressed'
@@ -58,8 +55,24 @@ def compress_image_svd(file_path, k):
 
 @app.route('/')
 def index():
-    # Sirve el archivo HTML principal
-    return open('index.html').read()
+    # Sirve el archivo HTML principal sin decodificar en Python (evita errores de encoding)
+    # Usar send_from_directory permite que Flask entregue el archivo tal cual en bytes.
+    return send_from_directory('.', 'index.html')
+
+
+# Rutas para servir assets estáticos en la raíz del proyecto
+@app.route('/style.css')
+def style_css():
+    return send_from_directory('.', 'style.css')
+
+@app.route('/script.js')
+def script_js():
+    return send_from_directory('.', 'script.js')
+
+@app.route('/favicon.ico')
+def favicon():
+    # Si no existe, Flask retornará 404 automáticamente
+    return send_from_directory('.', 'favicon.ico')
 
 @app.route('/upload', methods=['POST'])
 def upload_and_compress():
