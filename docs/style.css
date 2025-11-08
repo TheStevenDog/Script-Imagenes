@@ -1,0 +1,226 @@
+/* style.css copied to docs/ for GitHub Pages */
+
+/* --- Estilos Generales --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #4A90E2; /* Azul principal */
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Controles e Interacción --- */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espacio entre los elementos de control */
+}
+
+.slider-container {
+    width: 80%;
+    margin: 10px 0;
+}
+
+#rangoK {
+    width: 100%;
+    cursor: pointer;
+}
+
+.description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- Botón Principal de Simulación --- */
+button {
+    background-color: #008CBA; /* Azul Cían */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005f79;
+}
+
+/* --- Estilos para el botón de subir imagen --- */
+.input-file-container {
+    margin: 20px 0;
+}
+
+.file-label {
+    background-color: #28a745; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.file-label:hover {
+    background-color: #1e7e34;
+}
+
+#imageUpload {
+    display: none; /* Oculta el input por defecto del navegador */
+}
+
+/* --- Visualización de Imágenes --- */
+.visualization {
+    text-align: left;
+}
+
+.image-display {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.image-box {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+.placeholder {
+    height: 250px;
+    background-color: #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #555;
+    border-radius: 4px;
+    overflow: hidden; /* Importante para contener la imagen */
+}
+
+.placeholder.result {
+    background-color: #e0f7fa; /* Fondo para el resultado */
+}
+
+/* Asegura que la imagen cargada se ajuste dentro del contenedor */
+.placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Estilos de simulación para hacer que la imagen se vea borrosa/en blanco y negro */
+    transition: filter 0.5s ease-in-out; 
+}
+
+
+/* --- Resultados del Cálculo --- */
+.results-box {
+    background-color: #e6e6fa; /* Lavanda suave */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.big-result {
+    font-size: 1.6em;
+    color: #D35400; /* Naranja oscuro para resaltar el ahorro */
+    font-weight: bold;
+}
+
+/* --- AGREGAR AL FINAL DE style.css --- */
+
+/* Estilos para el Visor de Imágenes (Lightbox) */
+#lightbox {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Posición fija para cubrir toda la ventana */
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    padding-top: 50px; /* Espacio desde arriba */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite desplazamiento si la imagen es muy grande */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
+}
+
+#lightboxImage {
+    margin: auto;
+    display: block;
+    width: 80%; /* Ancho máximo en el lightbox */
+    max-width: 1000px;
+    height: auto;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    border: 5px solid white;
+}
+
+#lightboxCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+#closeButton {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#closeButton:hover,
+#closeButton:focus {
+    color: #bbb;
+}
+
+/* Animación de acercamiento para la imagen */
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* --- Asegúrate de que los estilos anteriores para .placeholder img tienen cursor: pointer; --- */
+.placeholder img {
+    /* ... otros estilos ... */
+    cursor: pointer; /* Añade esto */
+}
